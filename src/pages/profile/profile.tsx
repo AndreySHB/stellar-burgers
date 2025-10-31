@@ -2,6 +2,7 @@ import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from '../../services/store';
 import { updateUser, getUser } from '../../services/slices/authSlice';
+import { getErrorMsg } from '../../utils/util';
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
@@ -50,8 +51,8 @@ export const Profile: FC = () => {
 
       // Сбрасываем пароль после успешного обновления
       setFormValue((prev) => ({ ...prev, password: '' }));
-    } catch (err: any) {
-      setUpdateError(err.message || 'Ошибка при обновлении данных');
+    } catch (err: unknown) {
+      setUpdateError(getErrorMsg(err));
     }
   };
 

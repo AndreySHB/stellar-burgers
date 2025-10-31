@@ -3,6 +3,7 @@ import { useDispatch } from '../../services/store';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { LoginUI } from '@ui-pages';
 import { loginUser } from '../../services/slices/authSlice';
+import { getErrorMsg } from '../../utils/util';
 
 export const Login: FC = () => {
   const dispatch = useDispatch();
@@ -22,8 +23,8 @@ export const Login: FC = () => {
       // Перенаправляем пользователя на предыдущую страницу или на главную
       const from = location.state?.from || '/';
       navigate(from, { replace: true });
-    } catch (err: any) {
-      setError(err.message || 'Произошла ошибка при входе');
+    } catch (err: unknown) {
+      setError(getErrorMsg(err));
     }
   };
 

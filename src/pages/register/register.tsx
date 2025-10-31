@@ -3,6 +3,7 @@ import { useDispatch } from '../../services/store';
 import { useNavigate } from 'react-router-dom';
 import { RegisterUI } from '@ui-pages';
 import { registerUser } from '../../services/slices/authSlice';
+import { getErrorMsg } from '../../utils/util';
 
 export const Register: FC = () => {
   const dispatch = useDispatch();
@@ -28,8 +29,8 @@ export const Register: FC = () => {
 
       // После успешной регистрации перенаправляем на главную страницу
       navigate('/', { replace: true });
-    } catch (err: any) {
-      setError(err.message || 'Произошла ошибка при регистрации');
+    } catch (err: unknown) {
+      setError(getErrorMsg(err));
     }
   };
 
