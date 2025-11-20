@@ -62,7 +62,7 @@ describe('burgerConstructor reducer', () => {
     expect(state.ingredients).toHaveLength(1);
     expect(state.ingredients[0]).toMatchObject({
       ...mockIngredient,
-      id: expect.any(String)
+      id: expect.stringMatching('^ingredient-1')
     });
     expect(state.bun).toBeNull();
   });
