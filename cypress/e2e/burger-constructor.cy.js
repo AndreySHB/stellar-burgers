@@ -19,7 +19,7 @@ describe('Burger Constructor', () => {
     window.localStorage.setItem('refreshToken', 'mock-refresh-token');
 
     // Переходим на главную страницу
-    cy.visit('http://localhost:4000');
+    cy.visit('/');
 
     // Ждем загрузки ингредиентов
     cy.wait('@getIngredients');
